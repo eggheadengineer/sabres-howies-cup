@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-11T15:16:18.043335-04:00",
+ "updated": "2026-09-11T15:34:37.300313-04:00",
  "table": [
   {
    "team": "18U Birmingham Rangers",
@@ -10,6 +10,17 @@
    "otl": 0,
    "pts": 3,
    "gf": 7,
+   "ga": 0
+  },
+  {
+   "team": "18U Michigan steel grey",
+   "gp": 1,
+   "w": 1,
+   "l": 0,
+   "otw": 0,
+   "otl": 0,
+   "pts": 3,
+   "gf": 1,
    "ga": 0
   },
   {
@@ -101,29 +112,7 @@
    "ga": 7
   },
   {
-   "team": "18U Michigan steel grey",
-   "gp": 0,
-   "w": 0,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 0,
-   "ga": 0
-  },
-  {
    "team": "18U Naperville Sabres",
-   "gp": 0,
-   "w": 0,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 0,
-   "ga": 0
-  },
-  {
-   "team": "Affton Americans CSDHL 18U Prospects",
    "gp": 0,
    "w": 0,
    "l": 0,
@@ -165,6 +154,17 @@
    "pts": 0,
    "gf": 0,
    "ga": 0
+  },
+  {
+   "team": "Affton Americans CSDHL 18U Prospects",
+   "gp": 1,
+   "w": 0,
+   "l": 1,
+   "otw": 0,
+   "otl": 0,
+   "pts": 0,
+   "gf": 0,
+   "ga": 1
   },
   {
    "team": "Southern Maryland Sabres",
