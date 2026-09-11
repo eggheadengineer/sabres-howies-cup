@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-11T17:00:12.989858-04:00",
+ "updated": "2026-09-11T17:10:10.188212-04:00",
  "table": [
   {
    "team": "18U Birmingham Rangers",
@@ -90,6 +90,28 @@
    "ga": 1
   },
   {
+   "team": "18U Naperville Sabres",
+   "gp": 1,
+   "w": 1,
+   "l": 0,
+   "otw": 0,
+   "otl": 0,
+   "pts": 3,
+   "gf": 4,
+   "ga": 3
+  },
+  {
+   "team": "West Michigan Varsity 18U Green",
+   "gp": 1,
+   "w": 0,
+   "l": 1,
+   "otw": 0,
+   "otl": 0,
+   "pts": 0,
+   "gf": 3,
+   "ga": 4
+  },
+  {
    "team": "West Michigan Varsity 18U AA White",
    "gp": 1,
    "w": 0,
@@ -121,28 +143,6 @@
    "pts": 0,
    "gf": 1,
    "ga": 7
-  },
-  {
-   "team": "18U Naperville Sabres",
-   "gp": 0,
-   "w": 0,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 0,
-   "ga": 0
-  },
-  {
-   "team": "West Michigan Varsity 18U Green",
-   "gp": 0,
-   "w": 0,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 0,
-   "ga": 0
   },
   {
    "team": "Affton Americans CSDHL 18U Prospects",
@@ -338,9 +338,9 @@
    "away": "18U Naperville Sabres",
    "home_label": "",
    "away_label": "",
-   "hs": 0,
-   "as": 0,
-   "status": "in-progress",
+   "hs": 3,
+   "as": 4,
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Valley",
    "round": "pool",
    "so": false
