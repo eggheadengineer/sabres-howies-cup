@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-11T19:30:11.278519-04:00",
+ "updated": "2026-09-11T19:32:49.896745-04:00",
  "table": [
   {
    "team": "18U Birmingham Rangers",
@@ -79,6 +79,17 @@
    "ga": 1
   },
   {
+   "team": "West Michigan Varsity 18U AA White",
+   "gp": 2,
+   "w": 1,
+   "l": 1,
+   "otw": 0,
+   "otl": 0,
+   "pts": 3,
+   "gf": 8,
+   "ga": 2
+  },
+  {
    "team": "Columbus Chill",
    "gp": 1,
    "w": 1,
@@ -110,17 +121,6 @@
    "pts": 0,
    "gf": 3,
    "ga": 4
-  },
-  {
-   "team": "West Michigan Varsity 18U AA White",
-   "gp": 1,
-   "w": 0,
-   "l": 1,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 1,
-   "ga": 2
   },
   {
    "team": "TC North Stars",
@@ -167,17 +167,6 @@
    "ga": 1
   },
   {
-   "team": "Southern Maryland Sabres",
-   "gp": 1,
-   "w": 0,
-   "l": 1,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 0,
-   "ga": 5
-  },
-  {
    "team": "San Jose Jr. Sharks 18aa",
    "gp": 1,
    "w": 0,
@@ -198,6 +187,17 @@
    "pts": 0,
    "gf": 0,
    "ga": 7
+  },
+  {
+   "team": "Southern Maryland Sabres",
+   "gp": 2,
+   "w": 0,
+   "l": 2,
+   "otw": 0,
+   "otl": 0,
+   "pts": 0,
+   "gf": 0,
+   "ga": 12
   }
  ],
  "games": [
@@ -356,7 +356,7 @@
    "away_label": "",
    "hs": 0,
    "as": 7,
-   "status": "in-progress",
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Valley",
    "round": "pool",
    "so": false
@@ -388,7 +388,7 @@
    "away_label": "",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Zoo",
    "round": "pool",
    "so": false
