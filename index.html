@@ -1,0 +1,331 @@
+<title>Sabres at the Howies Cup</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  :root{
+    --bg:#f1f4f8; --surface:#ffffff; --surface2:#e6ecf3; --line:#cfd8e3;
+    --ink:#101c30; --ink2:#42536a; --muted:#6b7a90;
+    --navy:#153a6b; --navy-ink:#ffffff; --gold:#c8931a; --gold-soft:#fbf1d6;
+    --good:#1f7a4d; --good-soft:#e2f3ea; --warn:#b4560f; --warn-soft:#fbe9d8; --bad:#a83232; --bad-soft:#f9e1e1;
+    --sabres-row:#e9f0fa;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0c1421; --surface:#131e30; --surface2:#1a2740; --line:#2a3a55;
+      --ink:#e8eef6; --ink2:#b7c3d4; --muted:#8393a8;
+      --navy:#1e4a85; --navy-ink:#ffffff; --gold:#e2b23c; --gold-soft:#2c2712;
+      --good:#5ccf8f; --good-soft:#12301f; --warn:#f0a35a; --warn-soft:#33220f; --bad:#f07777; --bad-soft:#3a1717;
+      --sabres-row:#1b2c48;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0c1421; --surface:#131e30; --surface2:#1a2740; --line:#2a3a55;
+    --ink:#e8eef6; --ink2:#b7c3d4; --muted:#8393a8;
+    --navy:#1e4a85; --navy-ink:#ffffff; --gold:#e2b23c; --gold-soft:#2c2712;
+    --good:#5ccf8f; --good-soft:#12301f; --warn:#f0a35a; --warn-soft:#33220f; --bad:#f07777; --bad-soft:#3a1717;
+    --sabres-row:#1b2c48;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px 56px}
+  h1,h2,h3,.disp{font-family:"Barlow Condensed","Arial Narrow",Impact,sans-serif;text-wrap:balance;margin:0}
+  h1{font-size:clamp(40px,8vw,64px);line-height:.95;font-weight:800;letter-spacing:-.01em;text-transform:uppercase}
+  h2{font-size:30px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1.05}
+  h3{font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  p{margin:0}
+  a{color:var(--navy)}
+  :root[data-theme="dark"] a{color:#8fb4e6}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) a{color:#8fb4e6}}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* header */
+  header{background:var(--navy);color:var(--navy-ink);border-bottom:6px solid var(--gold)}
+  header .wrap{padding-top:28px;padding-bottom:26px;display:grid;gap:10px}
+  header .eyebrow{color:#c9d8ee}
+  header p.sub{color:#d8e3f2;max-width:60ch}
+
+  section{margin-top:36px;display:grid;gap:14px}
+  .rule{height:2px;background:var(--line);margin-top:36px}
+  .rule.red{background:var(--bad);height:3px;opacity:.75}
+
+  /* situation board */
+  .board{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--surface);border:1px solid var(--line)}
+  .board > div{padding:14px 16px;border-right:1px solid var(--line)}
+  .board > div:last-child{border-right:0}
+  .board .disp{font-size:40px;line-height:1;font-weight:800;margin-top:4px}
+  .board .small{font-size:13px;color:var(--ink2);margin-top:2px}
+  @media (max-width:560px){.board{grid-template-columns:1fr 1fr}.board > div:nth-child(2){border-right:0}.board > div:nth-child(1),.board > div:nth-child(2){border-bottom:1px solid var(--line)}}
+
+  /* callout */
+  .callout{background:var(--gold-soft);border-left:5px solid var(--gold);padding:14px 18px;display:grid;gap:8px}
+  .callout ul{margin:0;padding-left:18px;display:grid;gap:6px}
+  .callout strong{font-weight:600}
+
+  /* game cards */
+  .games{display:grid;gap:10px}
+  .game{display:grid;grid-template-columns:110px 1fr;gap:14px;background:var(--surface);border:1px solid var(--line);padding:14px 16px;align-items:start}
+  .game .when .disp{font-size:26px;line-height:1;font-weight:700}
+  .game .when .day{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+  .game .opp{font-size:18px;font-weight:600}
+  .game .meta{color:var(--ink2);font-size:14px;margin-top:2px}
+  .game .note{margin-top:8px;font-size:14px;color:var(--ink2)}
+  .game.done{border-left:5px solid var(--bad)}
+  .game.next{border-left:5px solid var(--gold)}
+  .game.later{border-left:5px solid var(--line)}
+  .pill{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:2px;vertical-align:middle}
+  .pill.bad{background:var(--bad-soft);color:var(--bad)}
+  .pill.gold{background:var(--gold-soft);color:var(--gold)}
+  .pill.good{background:var(--good-soft);color:var(--good)}
+  .pill.warn{background:var(--warn-soft);color:var(--warn)}
+  .pill.muted{background:var(--surface2);color:var(--ink2)}
+  @media (max-width:480px){.game{grid-template-columns:1fr;gap:6px}}
+
+  /* tables */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:15px}
+  th{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:2px solid var(--line);font-weight:600;white-space:nowrap}
+  td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+  tr.us td{background:var(--sabres-row);font-weight:600}
+  .tag{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+  /* calculator */
+  .calc{background:var(--surface);border:1px solid var(--line);padding:18px;display:grid;gap:16px}
+  .calc .rows{display:grid;gap:12px}
+  .calc .row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+  .calc label{font-weight:600}
+  .calc label span{display:block;font-weight:400;color:var(--muted);font-size:13px}
+  .score{display:flex;align-items:center;gap:8px}
+  .score input{width:58px;height:44px;font:700 24px "Barlow Condensed",sans-serif;text-align:center;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:2px}
+  .score input:focus{outline:2px solid var(--gold);outline-offset:1px}
+  .score .dash{color:var(--muted);font-weight:700}
+  .score .side{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);width:34px;text-align:center}
+  .calc .out{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);background:var(--bg)}
+  .calc .out > div{padding:12px 14px;border-right:1px solid var(--line)}
+  .calc .out > div:last-child{border-right:0}
+  .calc .out .disp{font-size:34px;line-height:1;font-weight:800;margin-top:2px}
+  .verdict{padding:12px 14px;border-radius:2px;font-weight:500}
+  .verdict.good{background:var(--good-soft);color:var(--good)}
+  .verdict.warn{background:var(--warn-soft);color:var(--warn)}
+  .verdict.bad{background:var(--bad-soft);color:var(--bad)}
+  @media (max-width:480px){.calc .row{grid-template-columns:1fr}.calc .out{grid-template-columns:1fr}.calc .out > div{border-right:0;border-bottom:1px solid var(--line)}.calc .out > div:last-child{border-bottom:0}}
+
+  /* bracket */
+  .bracket{display:grid;gap:10px}
+  .bday{display:grid;gap:6px}
+  .bday h3{color:var(--ink2)}
+  .slot{display:grid;grid-template-columns:78px 1fr auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);padding:10px 14px}
+  .slot.qf{border-left:5px solid var(--navy)}
+  .slot.cons{border-left:5px solid var(--line)}
+  .slot.semi,.slot.final{border-left:5px solid var(--gold)}
+  .slot .t{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:700;line-height:1}
+  .slot .t small{display:block;font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+  .slot .who{font-weight:600}
+  .slot .who span{display:block;font-weight:400;color:var(--muted);font-size:13px}
+  @media (max-width:480px){.slot{grid-template-columns:78px 1fr}.slot .pill{grid-column:2}}
+
+  .fine{font-size:14px;color:var(--ink2)}
+  .fine ul,.fine ol{margin:0;padding-left:20px;display:grid;gap:4px}
+  footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:6px}
+  @media (prefers-reduced-motion: no-preference){.score input{transition:outline-color .15s}}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">2026 Howies Hometown Cup · Kalamazoo, MI · 18U Division</div>
+    <h1>Southern Maryland Sabres</h1>
+    <p class="sub">Where we stand, what the bracket looks like, and what the boys need to do to play Saturday night's quarterfinals.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <div class="board">
+      <div><div class="eyebrow">Record</div><div class="disp num">0–1–0</div><div class="small">Lost 0–5 to MHA Navy</div></div>
+      <div><div class="eyebrow">Points</div><div class="disp num">0</div><div class="small">2 games left, 6 possible</div></div>
+      <div><div class="eyebrow">Goal quotient</div><div class="disp num">.000</div><div class="small">0 for, 5 against</div></div>
+      <div><div class="eyebrow">Next game</div><div class="disp">6:00 PM</div><div class="small">Tonight, Wings Valley</div></div>
+    </div>
+    <p class="fine">Standings as of Friday, Sept 11 at 2:35 PM ET. Only 6 of the 27 preliminary games have finished. Live scores are on the <a href="https://my.200x85.com/tournaments/b242def3-6e03-4dba-8a7f-6b5960f35df0/schedules?division=889">tournament schedule</a> and <a href="https://my.200x85.com/tournaments/b242def3-6e03-4dba-8a7f-6b5960f35df0/standings?division=889">standings</a> pages.</p>
+  </section>
+
+  <section>
+    <h2>What it takes to make the quarterfinals</h2>
+    <div class="callout">
+      <p><strong>Win both remaining games in regulation, and win them by a margin.</strong> The 18U division is one 18-team table. Everyone plays three games, then the top 8 seeds go to the quarterfinals Saturday night. Roughly 8 to 10 teams usually finish with 6 or more points, so a 6-point team sits right on the seed 7 to 9 bubble and the tiebreaker decides it.</p>
+      <ul>
+        <li><strong>Two regulation wins</strong> gets us to 6 points. A shootout win is only worth 2, which drops us to 5 and almost certainly a consolation seed.</li>
+        <li><strong>Goal quotient is the tiebreaker</strong> among tied teams: goals for ÷ (goals for + goals against). This morning's 0–5 means we start deep in the hole. We need to outscore our next two opponents by a combined 6 or more, or post shutouts, to get back above .500.</li>
+        <li><strong>Shutouts count double.</strong> Goals against is in the quotient and is also the next tiebreaker after it.</li>
+        <li><strong>Run it up, to a point.</strong> A 7-goal cap applies to prelim differentials, so anything past 7–0 doesn't help the seed.</li>
+        <li><strong>Head to head helps.</strong> If we finish tied on points with West Michigan White or Michigan Steel Grey, beating them tonight and tomorrow puts us ahead of them.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Score it yourself</h2>
+    <p class="fine">Plug in scores for tonight and tomorrow to see where the Sabres would land. Assumes regulation results.</p>
+    <div class="calc">
+      <div class="rows">
+        <div class="row">
+          <label for="g1s">Tonight vs West Michigan Varsity 18U AA White<span>Fri 6:00 PM · Wings Event Center, Valley rink</span></label>
+          <div class="score"><span class="side">SMD</span><input id="g1s" type="number" min="0" max="15" value="3" inputmode="numeric"><span class="dash">–</span><input id="g1o" type="number" min="0" max="15" value="0" inputmode="numeric"><span class="side">WMV</span></div>
+        </div>
+        <div class="row">
+          <label for="g2s">Tomorrow vs 18U Michigan Steel Grey<span>Sat 10:45 AM · Wings Event Center, Zoo rink</span></label>
+          <div class="score"><span class="side">SMD</span><input id="g2s" type="number" min="0" max="15" value="3" inputmode="numeric"><span class="dash">–</span><input id="g2o" type="number" min="0" max="15" value="0" inputmode="numeric"><span class="side">MSG</span></div>
+        </div>
+      </div>
+      <div class="out">
+        <div><div class="eyebrow">Points</div><div class="disp num" id="oPts">6</div></div>
+        <div><div class="eyebrow">Goals for – against</div><div class="disp num" id="oGoals">6–5</div></div>
+        <div><div class="eyebrow">Goal quotient</div><div class="disp num" id="oGQ">.545</div></div>
+      </div>
+      <div class="verdict good" id="oVerdict">Likely a quarterfinal seed. Two regulation wins with a quotient above .500 has projected into the top 8 in nearly every scenario.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our games</h2>
+    <div class="games">
+      <div class="game done">
+        <div class="when"><div class="day">Fri Sep 11</div><div class="disp">8:40 AM</div></div>
+        <div><div class="opp">at MHA Navy 18U <span class="pill bad">Loss 0–5</span></div><div class="meta">BCIC Kalamazoo, Blue rink</div><div class="note">Navy sits first on the table after game one. We meet them again only if both teams reach the bracket.</div></div>
+      </div>
+      <div class="game next">
+        <div class="when"><div class="day">Fri Sep 11</div><div class="disp">6:00 PM</div></div>
+        <div><div class="opp">vs West Michigan Varsity 18U AA White <span class="pill gold">Next</span></div><div class="meta">Wings Event Center, Valley rink · Sabres are the home team, wear white</div><div class="note">They lost 1–2 to Columbus Chill this morning, so they are also sitting on 0 points and need this one as badly as we do.</div></div>
+      </div>
+      <div class="game later">
+        <div class="when"><div class="day">Sat Sep 12</div><div class="disp">10:45 AM</div></div>
+        <div><div class="opp">at 18U Michigan Steel Grey</div><div class="meta">Wings Event Center, Zoo rink · Sabres are the visitor, wear dark</div><div class="note">Their opener against Affton Americans was in progress when this page was written. Last prelim game in the division is 2:40 PM Saturday, and seeds post shortly after.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule red"></div>
+
+  <section>
+    <h2>How the bracket fills in</h2>
+    <p class="fine">Every placeholder on the schedule is a seed from the 18-team table. The seed pairings for the quarterfinals aren't published for this division yet. The pairings below follow the pattern 200x85 used in its other events this summer: 1 vs 8, 4 vs 5, 2 vs 7, 3 vs 6, in game-number order. Treat them as likely, not confirmed, until the schedule updates Saturday afternoon.</p>
+    <div class="bracket">
+      <div class="bday">
+        <h3>Saturday, Sept 12</h3>
+        <div class="slot cons"><div class="t">6:30 PM<small>Game 28</small></div><div class="who">Consolation<span>Wings Arena · two of seeds 9–16</span></div><span class="pill muted">Seeds 9–16</span></div>
+        <div class="slot cons"><div class="t">7:00 PM<small>Game 29</small></div><div class="who">Consolation<span>Wings Valley · two of seeds 9–16</span></div><span class="pill muted">Seeds 9–16</span></div>
+        <div class="slot cons"><div class="t">7:20 PM<small>Game 30</small></div><div class="who">Consolation<span>Wings Zoo · two of seeds 9–16</span></div><span class="pill muted">Seeds 9–16</span></div>
+        <div class="slot qf"><div class="t">7:40 PM<small>Game 31</small></div><div class="who">Quarterfinal<span>BCIC Kalamazoo, Blue</span></div><span class="pill good">Seed 1 vs 8</span></div>
+        <div class="slot qf"><div class="t">8:10 PM<small>Game 33</small></div><div class="who">Quarterfinal<span>Wings Arena</span></div><span class="pill good">Seed 2 vs 7</span></div>
+        <div class="slot qf"><div class="t">8:40 PM<small>Game 34</small></div><div class="who">Quarterfinal<span>Wings Valley</span></div><span class="pill good">Seed 3 vs 6</span></div>
+        <div class="slot cons"><div class="t">9:00 PM<small>Game 35</small></div><div class="who">Consolation<span>Wings Zoo · two of seeds 9–16</span></div><span class="pill muted">Seeds 9–16</span></div>
+        <div class="slot qf"><div class="t">9:20 PM<small>Game 32</small></div><div class="who">Quarterfinal<span>BCIC Kalamazoo, Blue</span></div><span class="pill good">Seed 4 vs 5</span></div>
+      </div>
+      <div class="bday">
+        <h3>Sunday, Sept 13</h3>
+        <div class="slot semi"><div class="t">9:25 AM<small>Game 37</small></div><div class="who">Semifinal<span>Wings Arena · winners of games 31 and 32</span></div><span class="pill gold">Semi</span></div>
+        <div class="slot semi"><div class="t">9:40 AM<small>Game 38</small></div><div class="who">Semifinal<span>Wings Valley · winners of games 33 and 34</span></div><span class="pill gold">Semi</span></div>
+        <div class="slot cons"><div class="t">11:10 AM<small>Game 36</small></div><div class="who">Consolation<span>Wings Arena</span></div><span class="pill muted">Seed 17 vs 18</span></div>
+        <div class="slot final"><div class="t">3:20 PM<small>Game 39</small></div><div class="who">Championship<span>Wings Arena · winners of the two semifinals</span></div><span class="pill gold">Final</span></div>
+      </div>
+    </div>
+    <p class="fine">Playoff games get one 3-minute 3-on-3 overtime, then a 3-player shootout, then sudden death. Prelim games skip the overtime and go straight to the shootout. One 60-second timeout per team in playoff games only.</p>
+  </section>
+
+  <section>
+    <h2>18U standings</h2>
+    <p class="fine">Sorted by points, then goal quotient. Teams that hadn't played yet at 2:35 PM are listed in the order the tournament shows them.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>#</th><th>Team</th><th class="r">GP</th><th class="r">W</th><th class="r">L</th><th class="r">Pts</th><th class="r">GF</th><th class="r">GA</th><th class="r">GQ</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>MHA Navy 18U</td><td class="r">1</td><td class="r">1</td><td class="r">0</td><td class="r">3</td><td class="r">5</td><td class="r">0</td><td class="r">1.000</td></tr>
+          <tr><td class="num">2</td><td>Chicago North Varsity 1</td><td class="r">1</td><td class="r">1</td><td class="r">0</td><td class="r">3</td><td class="r">4</td><td class="r">1</td><td class="r">.800</td></tr>
+          <tr><td class="num">3</td><td>Columbus Chill</td><td class="r">1</td><td class="r">1</td><td class="r">0</td><td class="r">3</td><td class="r">2</td><td class="r">1</td><td class="r">.667</td></tr>
+          <tr><td class="num">4</td><td>West Michigan Varsity 18U AA White</td><td class="r">1</td><td class="r">0</td><td class="r">1</td><td class="r">0</td><td class="r">1</td><td class="r">2</td><td class="r">.333</td></tr>
+          <tr><td class="num">5</td><td>TC North Stars</td><td class="r">1</td><td class="r">0</td><td class="r">1</td><td class="r">0</td><td class="r">1</td><td class="r">4</td><td class="r">.200</td></tr>
+          <tr><td class="num">6</td><td>Team Ohio <span class="tag">in progress</span></td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">7</td><td>MHA Red 18U <span class="tag">in progress</span></td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">8</td><td>Oakland Jr Grizzlies <span class="tag">in progress</span></td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">9</td><td>18U Michigan Steel Grey <span class="tag">in progress</span></td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">10</td><td>18U Birmingham Rangers <span class="tag">up 7–0, in progress</span></td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">11</td><td>West Michigan Varsity 18U Green</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">12</td><td>18U Naperville Sabres</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">13</td><td>Arctic Foxes 18U-1</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">14</td><td>KOHA 18U</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">15</td><td>Team Kentucky <span class="tag">down 0–7, in progress</span></td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">16</td><td>San Jose Jr. Sharks 18AA <span class="tag">in progress</span></td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr><td class="num">17</td><td>Affton Americans CSDHL 18U Prospects <span class="tag">in progress</span></td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">—</td></tr>
+          <tr class="us"><td class="num">18</td><td>Southern Maryland Sabres</td><td class="r">1</td><td class="r">0</td><td class="r">1</td><td class="r">0</td><td class="r">0</td><td class="r">5</td><td class="r">.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>The rules that decide seeding</h2>
+    <div class="fine">
+      <p><strong>Points.</strong> Regulation win 3 · Shootout win 2 · Shootout loss 1 · Regulation loss 0. No ties.</p>
+      <p style="margin-top:10px"><strong>Two teams tied</strong></p>
+      <ol>
+        <li>Head to head</li>
+        <li>Goal quotient: goals for ÷ (goals for + goals against)</li>
+        <li>Fewest goals against</li>
+        <li>Fastest goal</li>
+        <li>Coin flip</li>
+      </ol>
+      <p style="margin-top:10px"><strong>Three or more teams tied</strong></p>
+      <ol>
+        <li>Goal quotient (head to head only breaks equal quotients)</li>
+        <li>Fewest goals against</li>
+        <li>Fastest goal</li>
+        <li>Coin flip</li>
+      </ol>
+      <p style="margin-top:10px">If one tied team beat every other tied team it is seeded first among them, and a team that lost to every other tied team is seeded last. A maximum 7-goal differential applies to all preliminary games. Forfeits are recorded 1–0.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Rinks</h2>
+    <div class="fine">
+      <p><strong>Wings Event Center</strong> (Arena, Valley, Zoo rinks) · 3600 Vanrick Drive, Kalamazoo, MI 49001 · 269-226-0385</p>
+      <p style="margin-top:6px"><strong>BCIC Kalamazoo</strong> (Biggby Coffee Ice Cube, Blue rink) · 5076 Sports Drive, Kalamazoo, MI · 517-672-1905</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built from the tournament's published rules and the live 18U schedule and standings at my.200x85.com. Seed pairings for the quarterfinals are inferred from 200x85's other 2026 events and will be confirmed when the schedule updates Saturday. Projections come from a simulation of the remaining 21 preliminary games and are estimates, not guarantees.</p>
+    <p>Last updated Friday, September 11, 2026, 2:35 PM ET.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var ids=['g1s','g1o','g2s','g2o'];
+  var els={};ids.forEach(function(i){els[i]=document.getElementById(i);});
+  var oPts=document.getElementById('oPts'),oGoals=document.getElementById('oGoals'),oGQ=document.getElementById('oGQ'),oV=document.getElementById('oVerdict');
+  function v(id){var n=parseInt(els[id].value,10);return isNaN(n)||n<0?0:n;}
+  function fmt(q){return q>=1?'1.000':('.'+Math.round(q*1000).toString().padStart(3,'0'));}
+  function calc(){
+    var s1=v('g1s'),o1=v('g1o'),s2=v('g2s'),o2=v('g2o');
+    var pts=0,wins=0,ties=0;
+    [[s1,o1],[s2,o2]].forEach(function(g){ if(g[0]>g[1]){pts+=3;wins++;} else if(g[0]===g[1]){ties++;} });
+    var gf=s1+s2, ga=5+o1+o2;
+    var gq=(gf+ga)?gf/(gf+ga):0;
+    oPts.textContent=pts;
+    oGoals.textContent=gf+'–'+ga;
+    oGQ.textContent=fmt(gq);
+    var cls,txt;
+    if(ties>0){cls='warn';txt='Prelim games can’t end tied. A shootout win is worth 2 points and a shootout loss 1, so a tie here means at most 5 points, which usually lands in the consolation round.';}
+    else if(wins<2){cls='bad';txt='One win or fewer leaves us at '+pts+' points. That has projected to a seed around 13 to 16 and a Saturday night consolation game, not a quarterfinal.';}
+    else if(gq>=0.6){cls='good';txt='Strong. Two regulation wins with a quotient this high has projected to roughly a 3 to 5 seed and a quarterfinal in every simulated scenario.';}
+    else if(gq>=0.5){cls='good';txt='Likely a quarterfinal seed. Two regulation wins with a quotient above .500 has projected into the top 8 in nearly every scenario.';}
+    else{cls='warn';txt='On the bubble. Six points gets us in the conversation, but with a quotient under .500 the projection is a 7 to 9 seed. Every goal for and every goal against tomorrow moves it.';}
+    oV.className='verdict '+cls; oV.textContent=txt;
+  }
+  ids.forEach(function(i){els[i].addEventListener('input',calc);});
+  calc();
+})();
+</script>
