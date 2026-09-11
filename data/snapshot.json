@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-11T17:30:11.042091-04:00",
+ "updated": "2026-09-11T17:40:11.734081-04:00",
  "table": [
   {
    "team": "18U Birmingham Rangers",
@@ -101,6 +101,28 @@
    "ga": 3
   },
   {
+   "team": "TC North Stars",
+   "gp": 2,
+   "w": 0,
+   "l": 1,
+   "otw": 1,
+   "otl": 0,
+   "pts": 2,
+   "gf": 4,
+   "ga": 6
+  },
+  {
+   "team": "Team Ohio",
+   "gp": 2,
+   "w": 0,
+   "l": 1,
+   "otw": 0,
+   "otl": 1,
+   "pts": 1,
+   "gf": 3,
+   "ga": 10
+  },
+  {
    "team": "West Michigan Varsity 18U Green",
    "gp": 1,
    "w": 0,
@@ -121,28 +143,6 @@
    "pts": 0,
    "gf": 1,
    "ga": 2
-  },
-  {
-   "team": "TC North Stars",
-   "gp": 1,
-   "w": 0,
-   "l": 1,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 1,
-   "ga": 4
-  },
-  {
-   "team": "Team Ohio",
-   "gp": 1,
-   "w": 0,
-   "l": 1,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 1,
-   "ga": 7
   },
   {
    "team": "Affton Americans CSDHL 18U Prospects",
@@ -370,9 +370,9 @@
    "away": "TC North Stars",
    "home_label": "",
    "away_label": "",
-   "hs": 0,
-   "as": 0,
-   "status": "scheduled",
+   "hs": 2,
+   "as": 3,
+   "status": "final-ot",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "pool",
    "so": false
