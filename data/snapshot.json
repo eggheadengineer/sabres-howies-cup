@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-11T19:10:10.831982-04:00",
+ "updated": "2026-09-11T19:20:10.803892-04:00",
  "table": [
   {
    "team": "18U Birmingham Rangers",
@@ -372,7 +372,7 @@
    "away_label": "",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "pool",
    "so": false
