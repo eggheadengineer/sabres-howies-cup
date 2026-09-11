@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-11T15:34:37.300313-04:00",
+ "updated": "2026-09-11T15:35:30.881118-04:00",
  "table": [
   {
    "team": "18U Birmingham Rangers",
@@ -306,9 +306,9 @@
    "away": "Affton Americans CSDHL 18U Prospects",
    "home_label": "",
    "away_label": "",
-   "hs": 0,
+   "hs": 1,
    "as": 0,
-   "status": "in-progress",
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "pool",
    "so": false
