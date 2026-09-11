@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-11T16:00:11.315063-04:00",
+ "updated": "2026-09-11T16:10:09.765118-04:00",
  "table": [
   {
    "team": "18U Birmingham Rangers",
@@ -14,6 +14,17 @@
   },
   {
    "team": "18U Michigan steel grey",
+   "gp": 1,
+   "w": 1,
+   "l": 0,
+   "otw": 0,
+   "otl": 0,
+   "pts": 3,
+   "gf": 1,
+   "ga": 0
+  },
+  {
+   "team": "Arctic Foxes Hockey Association 18U-1",
    "gp": 1,
    "w": 1,
    "l": 0,
@@ -123,28 +134,6 @@
    "ga": 0
   },
   {
-   "team": "Arctic Foxes Hockey Association 18U-1",
-   "gp": 0,
-   "w": 0,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 0,
-   "ga": 0
-  },
-  {
-   "team": "KOHA 18U",
-   "gp": 0,
-   "w": 0,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 0,
-   "ga": 0
-  },
-  {
    "team": "West Michigan Varsity 18U Green",
    "gp": 0,
    "w": 0,
@@ -157,6 +146,17 @@
   },
   {
    "team": "Affton Americans CSDHL 18U Prospects",
+   "gp": 1,
+   "w": 0,
+   "l": 1,
+   "otw": 0,
+   "otl": 0,
+   "pts": 0,
+   "gf": 0,
+   "ga": 1
+  },
+  {
+   "team": "KOHA 18U",
    "gp": 1,
    "w": 0,
    "l": 1,
@@ -323,8 +323,8 @@
    "home_label": "",
    "away_label": "",
    "hs": 0,
-   "as": 0,
-   "status": "in-progress",
+   "as": 1,
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Zoo",
    "round": "pool",
    "so": false
