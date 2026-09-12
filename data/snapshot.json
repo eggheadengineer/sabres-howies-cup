@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-12T09:50:10.080136-04:00",
+ "updated": "2026-09-12T12:39:52.416535-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -68,6 +68,17 @@
    "ga": 3
   },
   {
+   "team": "18U Michigan steel grey",
+   "gp": 3,
+   "w": 2,
+   "l": 1,
+   "otw": 0,
+   "otl": 0,
+   "pts": 6,
+   "gf": 9,
+   "ga": 6
+  },
+  {
    "team": "West Michigan Varsity 18U AA White",
    "gp": 2,
    "w": 1,
@@ -121,17 +132,6 @@
    "pts": 3,
    "gf": 3,
    "ga": 7
-  },
-  {
-   "team": "18U Michigan steel grey",
-   "gp": 2,
-   "w": 1,
-   "l": 1,
-   "otw": 0,
-   "otl": 0,
-   "pts": 3,
-   "gf": 2,
-   "ga": 6
   },
   {
    "team": "TC North Stars",
@@ -190,14 +190,14 @@
   },
   {
    "team": "Southern Maryland Sabres",
-   "gp": 2,
+   "gp": 3,
    "w": 0,
-   "l": 2,
+   "l": 3,
    "otw": 0,
    "otl": 0,
    "pts": 0,
    "gf": 0,
-   "ga": 12
+   "ga": 19
   }
  ],
  "games": [
@@ -498,9 +498,9 @@
    "away": "Southern Maryland Sabres",
    "home_label": "",
    "away_label": "",
-   "hs": 0,
+   "hs": 7,
    "as": 0,
-   "status": "scheduled",
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Zoo",
    "round": "pool",
    "so": false
@@ -516,7 +516,7 @@
    "away_label": "",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Valley",
    "round": "pool",
    "so": false
@@ -532,7 +532,7 @@
    "away_label": "",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "pool",
    "so": false
@@ -548,7 +548,7 @@
    "away_label": "",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "BCIC - Kzoo \u00b7 Blue",
    "round": "pool",
    "so": false
@@ -564,7 +564,7 @@
    "away_label": "",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Zoo",
    "round": "pool",
    "so": false
