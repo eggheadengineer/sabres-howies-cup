@@ -86,6 +86,8 @@
   td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
   tr.us td{background:var(--sabres-row);font-weight:600}
   tr.cut td{border-bottom:3px double var(--gold)}
+  table.scen tbody tr:first-child td, table.scen th{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+  table.scen tr th{border-bottom:2px solid var(--line)}
   .tag{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 
   .calc{background:var(--surface);border:1px solid var(--line);padding:18px;display:grid;gap:16px}
@@ -136,7 +138,7 @@
     <div class="eyebrow">2026 Howies Hometown Cup · Kalamazoo, MI · 18U Division</div>
     <h1>Southern Maryland Sabres</h1>
     <p class="sub">Where we stand, what the bracket looks like, and what the boys need to do in the next game.</p>
-    <div class="live"><i></i>Updates itself from the tournament's live scores about every 10 minutes. Last refresh Saturday, September 12, 2026, 8:30 AM ET.</div>
+    <div class="live"><i></i>Updates itself from the tournament's live scores about every 10 minutes. Last refresh Saturday, September 12, 2026, 8:37 AM ET.</div>
   </div>
 </header>
 
@@ -155,6 +157,23 @@
   <section>
     <h2>What it takes to avoid the Sunday game</h2>
     <div class="callout"><p><strong>The quarterfinals are out of reach. The goal now is to stay out of the Sunday 17-vs-18 game.</strong> Seeds 9 through 16 play a consolation game Saturday night and are done. Seeds 17 and 18 play Sunday at 11:10 AM. The Sabres are 18th of 18 right now with 0 points, 5 other teams on the same points, and 1 game left.</p><ul><li><strong>One point is the whole game.</strong> Prelim games have no overtime: a tie after three periods goes straight to a shootout, and the shootout loser still gets 1 point. One point puts the Sabres above every team still on 0.</li><li><strong>A shutout loss is fatal.</strong> With 0 goals for, the Sabres' goal quotient is .000. The next tiebreaker is fewest goals against, and at 12 they have the most in the group.</li><li><strong>If it's a loss, score anyway.</strong> Every Sabres goal lifts the quotient above teams that get shut out today. Two or more goals in a close loss keeps a slim chance alive.</li><li><strong>Keep it tight.</strong> A 0–0 or 1–1 game into the shootout is worth far more than chasing goals and losing by three.</li></ul></div>
+  </section>
+
+  <section id="scensec">
+    <h2>Scenario odds</h2>
+    <p class="fine">A team-strength model fitted to the 18 results so far, replaying the 8 other remaining preliminary games 4,000 times for each Sabres outcome against 18U Michigan steel grey. Shootout results credit the winner one extra goal, as the tournament does. Estimates, not guarantees.</p>
+    <div class="tablewrap">
+      <table class="scen">
+        <tbody><tr><th>Sabres' result today</th><th class="r">Avoid Sunday game</th><th class="r">Seed 17</th><th class="r">Seed 18</th></tr>
+<tr><td>Win, regulation or shootout</td><td class="r"><span class="pill good">100%</span></td><td class="r">0%</td><td class="r">0%</td></tr>
+<tr><td>Shootout loss (1 point)</td><td class="r"><span class="pill good">92%</span></td><td class="r">8%</td><td class="r">0%</td></tr>
+<tr><td>Lose 3–6</td><td class="r"><span class="pill warn">38%</span></td><td class="r">47%</td><td class="r">16%</td></tr>
+<tr><td>Lose 2–4</td><td class="r"><span class="pill warn">20%</span></td><td class="r">52%</td><td class="r">28%</td></tr>
+<tr><td>Lose 1–3</td><td class="r"><span class="pill bad">0%</span></td><td class="r">29%</td><td class="r">71%</td></tr>
+<tr><td>Lose 0–1</td><td class="r"><span class="pill bad">0%</span></td><td class="r">6%</td><td class="r">94%</td></tr>
+<tr><td>Lose 0–3 or worse</td><td class="r"><span class="pill bad">0%</span></td><td class="r">1%</td><td class="r">99%</td></tr></tbody>
+      </table>
+    </div>
   </section>
 
   <section id="calcsec">
@@ -265,7 +284,7 @@
 
   <footer>
     <p>Built from the tournament's published rules and the live 18U schedule and standings at my.200x85.com, refreshed automatically. Quarterfinal seed pairings are inferred from 200x85's other 2026 events until the tournament posts them. Projections replay the remaining preliminary games with random plausible scores and are estimates, not guarantees.</p>
-    <p>Last refresh Saturday, September 12, 2026, 8:30 AM ET.</p>
+    <p>Last refresh Saturday, September 12, 2026, 8:37 AM ET.</p>
   </footer>
 </div>
 
