@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-11T20:30:10.484556-04:00",
+ "updated": "2026-09-11T20:40:11.593749-04:00",
  "table": [
   {
    "team": "18U Birmingham Rangers",
@@ -420,7 +420,7 @@
    "away_label": "",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "BCIC - Kzoo \u00b7 Blue",
    "round": "pool",
    "so": false
