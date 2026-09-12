@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-12T13:30:09.245957-04:00",
+ "updated": "2026-09-12T13:40:11.070705-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -546,8 +546,8 @@
    "away": "San Jose Jr. Sharks 18aa",
    "home_label": "",
    "away_label": "",
-   "hs": 1,
-   "as": 3,
+   "hs": 2,
+   "as": 4,
    "status": "in-progress",
    "loc": "BCIC - Kzoo \u00b7 Blue",
    "round": "pool",
