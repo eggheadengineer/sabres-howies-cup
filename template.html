@@ -102,6 +102,8 @@
   .calc .out > div{padding:12px 14px;border-right:1px solid var(--line)}
   .calc .out > div:last-child{border-right:0}
   .calc .out .disp{font-size:34px;line-height:1;font-weight:800;margin-top:2px}
+  .so{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;font-size:14px}
+  .so label{display:inline-flex;align-items:center;gap:6px}
   .verdict{padding:12px 14px;border-radius:2px;font-weight:500}
   .verdict.good{background:var(--good-soft);color:var(--good)}
   .verdict.warn{background:var(--warn-soft);color:var(--warn)}
@@ -133,7 +135,7 @@
   <div class="wrap">
     <div class="eyebrow">2026 Howies Hometown Cup · Kalamazoo, MI · 18U Division</div>
     <h1>Southern Maryland Sabres</h1>
-    <p class="sub">Where we stand, what the bracket looks like, and what the boys need to do to play Saturday night's quarterfinals.</p>
+    <p class="sub">Where we stand, what the bracket looks like, and what the boys need to do in the next game.</p>
     <div class="live"><i></i>Updates itself from the tournament's live scores about every 10 minutes. Last refresh {{UPDATED}}.</div>
   </div>
 </header>
@@ -151,20 +153,21 @@
   </section>
 
   <section>
-    <h2>What it takes to make the quarterfinals</h2>
+    <h2>{{GOAL_H2}}</h2>
     <div class="callout">{{CALLOUT}}</div>
   </section>
 
   <section id="calcsec"{{CALC_HIDDEN}}>
     <h2>Score it yourself</h2>
-    <p class="fine">Plug in scores for the remaining games to see where the Sabres would land. Assumes regulation results. The projection replays the rest of the division's schedule many times against the results that are already in.</p>
+    <p class="fine">Plug in scores for the remaining games to see where the Sabres would land. An equal score means the game went to a shootout; pick who won it. The projection replays the rest of the division's schedule many times against the results already in.</p>
     <div class="calc">
       <div class="rows">{{CALC_ROWS}}</div>
+      <div class="so" id="soRow" hidden><span class="eyebrow">Tied after three periods. Shootout:</span> <label><input type="radio" name="so" value="lost" checked> we lost it (1 pt)</label> <label><input type="radio" name="so" value="won"> we won it (2 pts)</label></div>
       <div class="out">
         <div><div class="eyebrow">Points</div><div class="disp num" id="oPts">–</div></div>
         <div><div class="eyebrow">Goals for – against</div><div class="disp num" id="oGoals">–</div></div>
         <div><div class="eyebrow">Goal quotient</div><div class="disp num" id="oGQ">–</div></div>
-        <div><div class="eyebrow">Top-8 odds</div><div class="disp num" id="oOdds">–</div></div>
+        <div><div class="eyebrow">{{ODDS_LABEL}}</div><div class="disp num" id="oOdds">–</div></div>
       </div>
       <div class="verdict warn" id="oVerdict">Enter scores above.</div>
     </div>
@@ -237,31 +240,35 @@
 (function(){
   var D=JSON.parse(document.getElementById('simdata').textContent);
   if(!D.n){return;}
+  var T=D.target||8;
   var ids=[];for(var i=1;i<=D.n;i++){ids.push('g'+i+'s');ids.push('g'+i+'o');}
   var els={};ids.forEach(function(i){els[i]=document.getElementById(i);});
-  var oPts=document.getElementById('oPts'),oGoals=document.getElementById('oGoals'),oGQ=document.getElementById('oGQ'),oOdds=document.getElementById('oOdds'),oV=document.getElementById('oVerdict');
+  var oPts=document.getElementById('oPts'),oGoals=document.getElementById('oGoals'),oGQ=document.getElementById('oGQ'),oOdds=document.getElementById('oOdds'),oV=document.getElementById('oVerdict'),soRow=document.getElementById('soRow');
   function v(id){var n=parseInt(els[id].value,10);return isNaN(n)||n<0?0:n;}
   function fmt(q){return q>=1?'1.000':('.'+Math.round(q*1000).toString().padStart(3,'0'));}
+  function soWon(){var r=document.querySelector('input[name=so]:checked');return r&&r.value==='won';}
   function calc(){
-    var pts=D.base_pts,gf=D.base_gf,ga=D.base_ga,wins=0,ties=0,losses=0;
-    for(var i=1;i<=D.n;i++){var s=v('g'+i+'s'),o=v('g'+i+'o');gf+=s;ga+=o;if(s>o){pts+=3;wins++;}else if(s===o){ties++;}else{losses++;}}
+    var pts=D.base_pts,gf=D.base_gf,ga=D.base_ga,wins=0,ties=0;
+    for(var i=1;i<=D.n;i++){var s=v('g'+i+'s'),o=v('g'+i+'o');gf+=s;ga+=o;
+      if(s>o){pts+=3;wins++;}else if(s===o){ties++;if(soWon()){pts+=2;gf+=1;wins++;}else{pts+=1;ga+=1;}}}
+    soRow.hidden=ties===0;
     var gq=(gf+ga)?gf/(gf+ga):0;
-    var packed=pts*10000+Math.round(gq*1000);
-    var inTop=0,ranks=[];
-    D.sims.forEach(function(sim){var better=0;for(var k=0;k<sim.length;k++){if(sim[k]>packed)better++;else break;}var r=better+1;ranks.push(r);if(r<=8)inTop++;});
+    var packed=pts*10000000+Math.round(gq*1000)*10000+(9999-Math.min(ga,9999));
+    var inT=0,ranks=[];
+    D.sims.forEach(function(sim){var better=0;for(var k=0;k<sim.length;k++){if(sim[k]>packed)better++;else break;}var r=better+1;ranks.push(r);if(r<=T)inT++;});
     ranks.sort(function(a,b){return a-b;});
-    var p=D.sims.length?inTop/D.sims.length:0;
+    var p=D.sims.length?inT/D.sims.length:0;
     var lo=ranks[Math.floor(ranks.length*0.1)]||0,hi=ranks[Math.floor(ranks.length*0.9)]||0,med=ranks[Math.floor(ranks.length/2)]||0;
     oPts.textContent=pts;oGoals.textContent=gf+'–'+ga;oGQ.textContent=fmt(gq);oOdds.textContent=Math.round(p*100)+'%';
-    var cls,txt;
-    if(ties>0){cls='warn';txt='Prelim games can’t end tied. A shootout win is worth 2 points and a shootout loss 1, so enter a one-goal result and mentally knock a point off.';}
-    else if(p>=0.85){cls='good';txt='In. That finish projects to about a '+med+' seed (likely range '+lo+' to '+hi+') and a quarterfinal Saturday night.';}
-    else if(p>=0.5){cls='good';txt='Probably in. Projects to about a '+med+' seed, likely range '+lo+' to '+hi+'. Every goal for and against still moves it.';}
-    else if(p>=0.15){cls='warn';txt='On the bubble. Projects to about a '+med+' seed (likely range '+lo+' to '+hi+'). Margin and shutouts decide it.';}
-    else{cls='bad';txt='Almost certainly out of the top 8. Projects to about a '+med+' seed, which means a Saturday night consolation game.';}
+    var cls,txt,goal=(T===8)?'a quarterfinal Saturday night':'a Saturday-night consolation game and no Sunday game';
+    if(p>=0.85){cls='good';txt='In. That result projects to about a '+med+' seed (likely range '+lo+' to '+hi+'): '+goal+'.';}
+    else if(p>=0.5){cls='good';txt='Probably. Projects to about a '+med+' seed, likely range '+lo+' to '+hi+'. Results in the other games still matter.';}
+    else if(p>=0.15){cls='warn';txt='On the bubble. Projects to about a '+med+' seed (likely range '+lo+' to '+hi+'). '+(T===8?'Margin and shutouts decide it.':'Goals for, goals against, and the other bottom-group games decide it.');}
+    else{cls='bad';txt=(T===8?'Almost certainly out of the top 8. Projects to about a '+med+' seed and a Saturday night consolation game.':'Almost certainly seed 17 or 18 and the Sunday 11:10 AM game. Projects to about a '+med+' seed.');}
     oV.className='verdict '+cls;oV.textContent=txt;
   }
   ids.forEach(function(i){els[i].addEventListener('input',calc);});
+  document.querySelectorAll('input[name=so]').forEach(function(r){r.addEventListener('change',calc);});
   calc();
 })();
 </script>
