@@ -1,6 +1,17 @@
 {
- "updated": "2026-09-11T21:40:08.913757-04:00",
+ "updated": "2026-09-12T02:18:49.690072-04:00",
  "table": [
+  {
+   "team": "MHA Red 18U",
+   "gp": 2,
+   "w": 2,
+   "l": 0,
+   "otw": 0,
+   "otl": 0,
+   "pts": 6,
+   "gf": 13,
+   "ga": 0
+  },
   {
    "team": "MHA NAVY 18U",
    "gp": 2,
@@ -11,6 +22,17 @@
    "pts": 6,
    "gf": 11,
    "ga": 1
+  },
+  {
+   "team": "18U Birmingham Rangers",
+   "gp": 2,
+   "w": 2,
+   "l": 0,
+   "otw": 0,
+   "otl": 0,
+   "pts": 6,
+   "gf": 14,
+   "ga": 2
   },
   {
    "team": "Oakland Jr Grizzlies",
@@ -24,59 +46,26 @@
    "ga": 3
   },
   {
-   "team": "18U Birmingham Rangers",
-   "gp": 1,
-   "w": 1,
+   "team": "Columbus Chill",
+   "gp": 2,
+   "w": 2,
    "l": 0,
    "otw": 0,
    "otl": 0,
-   "pts": 3,
-   "gf": 7,
-   "ga": 0
+   "pts": 6,
+   "gf": 8,
+   "ga": 2
   },
   {
-   "team": "18U Michigan steel grey",
-   "gp": 1,
-   "w": 1,
+   "team": "18U Naperville Sabres",
+   "gp": 2,
+   "w": 2,
    "l": 0,
    "otw": 0,
    "otl": 0,
-   "pts": 3,
-   "gf": 1,
-   "ga": 0
-  },
-  {
-   "team": "Arctic Foxes Hockey Association 18U-1",
-   "gp": 1,
-   "w": 1,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 3,
-   "gf": 1,
-   "ga": 0
-  },
-  {
-   "team": "MHA Red 18U",
-   "gp": 1,
-   "w": 1,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 3,
-   "gf": 7,
-   "ga": 0
-  },
-  {
-   "team": "Chicago North Varsity 1",
-   "gp": 1,
-   "w": 1,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 3,
-   "gf": 4,
-   "ga": 1
+   "pts": 6,
+   "gf": 11,
+   "ga": 3
   },
   {
    "team": "West Michigan Varsity 18U AA White",
@@ -90,26 +79,15 @@
    "ga": 2
   },
   {
-   "team": "Columbus Chill",
-   "gp": 1,
+   "team": "West Michigan Varsity 18U Green",
+   "gp": 2,
    "w": 1,
-   "l": 0,
+   "l": 1,
    "otw": 0,
    "otl": 0,
    "pts": 3,
-   "gf": 2,
-   "ga": 1
-  },
-  {
-   "team": "18U Naperville Sabres",
-   "gp": 1,
-   "w": 1,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 3,
-   "gf": 4,
-   "ga": 3
+   "gf": 6,
+   "ga": 4
   },
   {
    "team": "Team Ohio",
@@ -123,15 +101,37 @@
    "ga": 8
   },
   {
-   "team": "West Michigan Varsity 18U Green",
-   "gp": 1,
-   "w": 0,
+   "team": "Chicago North Varsity 1",
+   "gp": 2,
+   "w": 1,
    "l": 1,
    "otw": 0,
    "otl": 0,
-   "pts": 0,
+   "pts": 3,
+   "gf": 4,
+   "ga": 7
+  },
+  {
+   "team": "Arctic Foxes Hockey Association 18U-1",
+   "gp": 2,
+   "w": 1,
+   "l": 1,
+   "otw": 0,
+   "otl": 0,
+   "pts": 3,
    "gf": 3,
-   "ga": 4
+   "ga": 7
+  },
+  {
+   "team": "18U Michigan steel grey",
+   "gp": 2,
+   "w": 1,
+   "l": 1,
+   "otw": 0,
+   "otl": 0,
+   "pts": 3,
+   "gf": 2,
+   "ga": 6
   },
   {
    "team": "TC North Stars",
@@ -168,25 +168,25 @@
   },
   {
    "team": "KOHA 18U",
-   "gp": 1,
+   "gp": 2,
    "w": 0,
-   "l": 1,
+   "l": 2,
    "otw": 0,
    "otl": 0,
    "pts": 0,
    "gf": 0,
-   "ga": 1
+   "ga": 8
   },
   {
    "team": "Team Kentucky",
-   "gp": 1,
+   "gp": 2,
    "w": 0,
-   "l": 1,
+   "l": 2,
    "otw": 0,
    "otl": 0,
    "pts": 0,
    "gf": 0,
-   "ga": 7
+   "ga": 10
   },
   {
    "team": "Southern Maryland Sabres",
@@ -418,9 +418,9 @@
    "away": "18U Michigan steel grey",
    "home_label": "",
    "away_label": "",
-   "hs": 2,
-   "as": 0,
-   "status": "in-progress",
+   "hs": 6,
+   "as": 1,
+   "status": "final",
    "loc": "BCIC - Kzoo \u00b7 Blue",
    "round": "pool",
    "so": false
@@ -435,8 +435,8 @@
    "home_label": "",
    "away_label": "",
    "hs": 0,
-   "as": 0,
-   "status": "in-progress",
+   "as": 3,
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "pool",
    "so": false
@@ -451,8 +451,8 @@
    "home_label": "",
    "away_label": "",
    "hs": 0,
-   "as": 0,
-   "status": "in-progress",
+   "as": 6,
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Zoo",
    "round": "pool",
    "so": false
@@ -466,9 +466,9 @@
    "away": "KOHA 18U",
    "home_label": "",
    "away_label": "",
-   "hs": 0,
+   "hs": 7,
    "as": 0,
-   "status": "in-progress",
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Valley",
    "round": "pool",
    "so": false
@@ -482,9 +482,9 @@
    "away": "18U Birmingham Rangers",
    "home_label": "",
    "away_label": "",
-   "hs": 0,
-   "as": 0,
-   "status": "scheduled",
+   "hs": 2,
+   "as": 7,
+   "status": "final",
    "loc": "BCIC - Kzoo \u00b7 Blue",
    "round": "pool",
    "so": false
