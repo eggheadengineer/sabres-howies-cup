@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-12T19:00:10.507558-04:00",
+ "updated": "2026-09-12T19:10:09.875891-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -660,7 +660,7 @@
    "away_label": "CONS",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Valley",
    "round": "consolation",
    "so": false
