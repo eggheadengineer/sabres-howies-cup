@@ -86,6 +86,8 @@
   td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
   tr.us td{background:var(--sabres-row);font-weight:600}
   tr.cut td{border-bottom:3px double var(--gold)}
+  table.scen tbody tr:first-child td, table.scen th{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+  table.scen tr th{border-bottom:2px solid var(--line)}
   .tag{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 
   .calc{background:var(--surface);border:1px solid var(--line);padding:18px;display:grid;gap:16px}
@@ -155,6 +157,16 @@
   <section>
     <h2>{{GOAL_H2}}</h2>
     <div class="callout">{{CALLOUT}}</div>
+  </section>
+
+  <section id="scensec"{{SCEN_HIDDEN}}>
+    <h2>Scenario odds</h2>
+    <p class="fine">{{SCEN_NOTE}}</p>
+    <div class="tablewrap">
+      <table class="scen">
+        <tbody>{{SCEN_ROWS}}</tbody>
+      </table>
+    </div>
   </section>
 
   <section id="calcsec"{{CALC_HIDDEN}}>
