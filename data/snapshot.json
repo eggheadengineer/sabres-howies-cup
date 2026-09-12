@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-12T13:50:10.098383-04:00",
+ "updated": "2026-09-12T14:45:17.020987-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -11,6 +11,17 @@
    "pts": 9,
    "gf": 20,
    "ga": 3
+  },
+  {
+   "team": "Oakland Jr Grizzlies",
+   "gp": 3,
+   "w": 2,
+   "l": 0,
+   "otw": 1,
+   "otl": 0,
+   "pts": 8,
+   "gf": 18,
+   "ga": 4
   },
   {
    "team": "MHA NAVY 18U",
@@ -33,17 +44,6 @@
    "pts": 6,
    "gf": 14,
    "ga": 2
-  },
-  {
-   "team": "Oakland Jr Grizzlies",
-   "gp": 2,
-   "w": 2,
-   "l": 0,
-   "otw": 0,
-   "otl": 0,
-   "pts": 6,
-   "gf": 16,
-   "ga": 3
   },
   {
    "team": "Columbus Chill",
@@ -90,6 +90,17 @@
    "ga": 9
   },
   {
+   "team": "Chicago North Varsity 1",
+   "gp": 3,
+   "w": 1,
+   "l": 1,
+   "otw": 0,
+   "otl": 1,
+   "pts": 4,
+   "gf": 5,
+   "ga": 9
+  },
+  {
    "team": "West Michigan Varsity 18U AA White",
    "gp": 2,
    "w": 1,
@@ -123,26 +134,26 @@
    "ga": 15
   },
   {
-   "team": "Chicago North Varsity 1",
-   "gp": 2,
+   "team": "San Jose Jr. Sharks 18aa",
+   "gp": 3,
    "w": 1,
-   "l": 1,
-   "otw": 0,
-   "otl": 0,
-   "pts": 3,
-   "gf": 4,
-   "ga": 7
-  },
-  {
-   "team": "TC North Stars",
-   "gp": 2,
-   "w": 0,
    "l": 2,
    "otw": 0,
    "otl": 0,
+   "pts": 3,
+   "gf": 7,
+   "ga": 18
+  },
+  {
+   "team": "TC North Stars",
+   "gp": 3,
+   "w": 0,
+   "l": 3,
+   "otw": 0,
+   "otl": 0,
    "pts": 0,
-   "gf": 2,
-   "ga": 11
+   "gf": 4,
+   "ga": 16
   },
   {
    "team": "Affton Americans CSDHL 18U Prospects",
@@ -154,17 +165,6 @@
    "pts": 0,
    "gf": 1,
    "ga": 7
-  },
-  {
-   "team": "San Jose Jr. Sharks 18aa",
-   "gp": 2,
-   "w": 0,
-   "l": 2,
-   "otw": 0,
-   "otl": 0,
-   "pts": 0,
-   "gf": 2,
-   "ga": 16
   },
   {
    "team": "KOHA 18U",
@@ -548,7 +548,7 @@
    "away_label": "",
    "hs": 2,
    "as": 5,
-   "status": "in-progress",
+   "status": "final",
    "loc": "BCIC - Kzoo \u00b7 Blue",
    "round": "pool",
    "so": false
@@ -562,9 +562,9 @@
    "away": "Chicago North Varsity 1",
    "home_label": "",
    "away_label": "",
-   "hs": 0,
-   "as": 0,
-   "status": "in-progress",
+   "hs": 2,
+   "as": 1,
+   "status": "final-ot",
    "loc": "Wings Event Center \u00b7 Zoo",
    "round": "pool",
    "so": false
@@ -612,7 +612,7 @@
    "away_label": "",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Zoo",
    "round": "pool",
    "so": false
