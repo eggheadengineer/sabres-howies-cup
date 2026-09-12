@@ -295,6 +295,67 @@ def render_standings(table, live_games):
     return "\n".join(out)
 
 
+def rank_dist(sims, pts, gf, ga):
+    """Rank distribution of the Sabres across simulated futures for a given final ledger."""
+    packed = pack(pts, gf, ga)
+    ranks = []
+    for sim in sims:
+        better = 0
+        for v in sim:
+            if v > packed:
+                better += 1
+            else:
+                break
+        ranks.append(better + 1)
+    return ranks
+
+
+def render_scenarios(table, games, us, remaining, avoid_mode, opp_names):
+    if not remaining or len(remaining) > 2:
+        return "", ""
+    sims = project(table, games, sims=4000, seed=21)
+    n_final = sum(1 for g in games if g["round"] == "pool" and g["status"] == "final")
+    n_pend = sum(1 for g in games if g["round"] == "pool" and g["status"] != "final")
+    P, GF, GA = us["pts"], us["gf"], us["ga"]
+
+    def outcome(us_g, op_g, so=False):
+        # (pts, gf, ga) after one game; shootout winner is credited one extra goal
+        if us_g > op_g:
+            return (3, us_g, op_g)
+        if us_g == op_g:
+            return (2, us_g + 1, op_g) if so else (1, us_g, op_g + 1)
+        return (0, us_g, op_g)
+    if len(remaining) == 1:
+        rows = [("Win, regulation or shootout", [(3, 0)]), ("Shootout loss (1 point)", [(1, 1, "sol")]),
+                ("Lose 3–6", [(3, 6)]), ("Lose 2–4", [(2, 4)]), ("Lose 1–3", [(1, 3)]), ("Lose 0–1", [(0, 1)]), ("Lose 0–3 or worse", [(0, 3)])] if avoid_mode else \
+               [("Win 7–0", [(7, 0)]), ("Win 4–0", [(4, 0)]), ("Win 2–0", [(2, 0)]), ("Win 2–1", [(2, 1)]), ("Shootout win", [(2, 2, "sow")]), ("Shootout loss", [(2, 2, "sol")]), ("Regulation loss", [(1, 3)])]
+    else:
+        rows = [("Win 5–0 and 5–0", [(5, 0), (5, 0)]), ("Win 3–0 and 3–0", [(3, 0), (3, 0)]), ("Win 4–1 and 3–1", [(4, 1), (3, 1)]), ("Win 2–1 and 2–1", [(2, 1), (2, 1)]),
+                ("Win 1–0 and 1–0", [(1, 0), (1, 0)]), ("One regulation win, one shootout win", [(3, 0), (2, 2, "sow")]), ("Win one, lose one", [(3, 0), (1, 3)])]
+    out = []
+    for label, results in rows:
+        p, gf, ga = P, GF, GA
+        for r in results:
+            dp, dgf, dga = outcome(r[0], r[1], so=(len(r) > 2 and r[2] == "sow")) if not (len(r) > 2 and r[2] == "sol") else (1, r[0], r[1] + 1)
+            p += dp; gf += dgf; ga += dga
+        ranks = rank_dist(sims, p, gf, ga)
+        N = len(ranks)
+        if avoid_mode:
+            cells = [sum(1 for x in ranks if x <= 16) / N, sum(1 for x in ranks if x == 17) / N, sum(1 for x in ranks if x == 18) / N]
+        else:
+            s = sorted(ranks)
+            cells = [sum(1 for x in ranks if x <= TOP_N) / N, s[N // 2], f"{s[N // 10]}–{s[9 * N // 10]}"]
+        cls = "good" if cells[0] >= 0.85 else ("warn" if cells[0] >= 0.15 else "bad")
+        fmtc = lambda c: f"{round(c * 100)}%" if isinstance(c, float) else str(c)
+        out.append(f'<tr><td>{esc(label)}</td><td class="r"><span class="pill {cls}">{fmtc(cells[0])}</span></td>' + "".join(f'<td class="r">{fmtc(c)}</td>' for c in cells[1:]) + "</tr>")
+    head = ('<tr><th>Sabres\' result today</th><th class="r">Avoid Sunday game</th><th class="r">Seed 17</th><th class="r">Seed 18</th></tr>' if avoid_mode
+            else '<tr><th>Sabres\' results</th><th class="r">Top-8 odds</th><th class="r">Median seed</th><th class="r">Likely range</th></tr>')
+    opp = " and ".join(opp_names)
+    note = (f'A team-strength model fitted to the {n_final} results so far, replaying the {n_pend - len(remaining)} other remaining preliminary games {len(sims):,} times for each Sabres outcome against {esc(opp)}. '
+            f'Shootout results credit the winner one extra goal, as the tournament does. Estimates, not guarantees.')
+    return head + "\n" + "\n".join(out), note
+
+
 def main():
     sched_raw = fetch(SCHED_URL, xhr=True)
     stand_raw = fetch(STAND_URL)
@@ -390,6 +451,7 @@ def main():
         where = f' Next up: {slot["round"].replace("-", " ")} at {slot["time"].lstrip("0")} {day_short(slot)}, {short_loc(slot["loc"])}.' if slot else ""
         callout = f'<p><strong>Seeding is final.</strong> The Sabres finished {us["pts"]} points, goal quotient {esc(fmt_gq(gq(us["gf"], us["ga"])))}, seeded {rank} of {len(table)}.{where}</p>'
 
+    scen_rows, scen_note = render_scenarios(table, games, us, remaining, avoid_mode, opp_json)
     tpl = (HERE / "template.html").read_text()
     subs = {
         "RECORD": f'{us["w"] + us["otw"]}–{us["l"] + us["otl"]}',
@@ -408,6 +470,7 @@ def main():
         "BRACKET": render_bracket(games),
         "STANDINGS": render_standings(table, games),
         "N_TEAMS": str(len(table)),
+        "SCEN_ROWS": scen_rows, "SCEN_NOTE": scen_note, "SCEN_HIDDEN": "" if scen_rows else " hidden",
         "GOAL_H2": "What it takes to avoid the Sunday game" if avoid_mode else "What it takes to make the quarterfinals",
         "ODDS_LABEL": "Saturday-night odds" if avoid_mode else "Top-8 odds",
         "SIM_JSON": json.dumps({"base_pts": us["pts"], "base_gf": us["gf"], "base_ga": us["ga"], "n": len(remaining), "opps": opp_json, "target": target, "sims": proj}, separators=(",", ":")),
