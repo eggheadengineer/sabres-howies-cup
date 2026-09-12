@@ -138,18 +138,49 @@ def sort_table(rows, games):
 
 
 # ---------------------------------------------------------------- projection
-def project(table, games, sims=500, seed=7):
-    """Simulate the remaining non-Sabres prelim games. Returns a compact list of the other
-    17 teams' final (pts, gq*1000) per sim, sorted best first, plus our fixed contribution.
-    Our own remaining games are assumed to be 3-0 Sabres wins for the opponents' ledgers."""
-    rnd = random.Random(seed)
-    base = {r["team"]: [r["pts"], r["gf"], r["ga"]] for r in table}
-    pending = [g for g in games if g["round"] == "pool" and g["status"] != "final"]
+def strength_model(table, games):
+    """Poisson attack/defense rates per team, shrunk toward league average (prior weight 2 games)."""
+    import math
     finals = [g for g in games if g["round"] == "pool" and g["status"] == "final"]
-    if len(finals) >= 8:
-        pool = [s for g in finals for s in (g["hs"], g["as"])]
-    else:
-        pool = [0, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 6]
+    avg = (sum(g["hs"] + g["as"] for g in finals) / (2 * len(finals))) if finals else 3.0
+    rates = {}
+    for r in table:
+        gp, k = r["gp"], 2.0
+        rates[r["team"]] = ((r["gf"] + avg * k) / (gp + k) / avg, (r["ga"] + avg * k) / (gp + k) / avg)
+
+    def play(rnd, h, a):
+        eh = avg * rates[h][0] * rates[a][1]
+        ea = avg * rates[a][0] * rates[h][1]
+
+        def pois(lam):
+            L, kk, p = math.exp(-lam), 0, rnd.random()
+            while p > L:
+                p *= rnd.random(); kk += 1
+            return kk
+        x, y, so = pois(eh), pois(ea), False
+        if x == y:
+            so = True
+            if rnd.random() < 0.5:
+                x += 1
+            else:
+                y += 1
+        if x - y > 7: x = y + 7
+        if y - x > 7: y = x + 7
+        return x, y, so
+    return play
+
+
+def pack(p, gf, ga):
+    return p * 10_000_000 + round(gq(gf, ga) * 1000) * 10_000 + (9999 - min(ga, 9999))
+
+
+def project(table, games, sims=500, seed=7):
+    """Simulate the remaining prelim games not involving the Sabres. Returns, per sim, the other
+    teams' packed (pts, goal quotient, fewest GA) values sorted best first."""
+    rnd = random.Random(seed)
+    play = strength_model(table, games)
+    base = {r["team"]: [r["pts"], r["gf"], r["ga"]] for r in table}
+    pending = [g for g in games if g["round"] == "pool" and g["status"] != "final" and US not in (g["home"], g["away"])]
     out = []
     for _ in range(sims):
         st = {k: v[:] for k, v in base.items()}
@@ -157,25 +188,13 @@ def project(table, games, sims=500, seed=7):
             h, a = g["home"], g["away"]
             if h not in st or a not in st:
                 continue
-            if US in (h, a):
-                opp = a if h == US else h
-                st[opp][2] += 3
-                continue
-            x, y = rnd.choice(pool), rnd.choice(pool)
-            so = False
-            if x == y:
-                so = True
-                if rnd.random() < 0.5:
-                    x += 1
-                else:
-                    y += 1
+            x, y, so = play(rnd, h, a)
             st[h][1] += x; st[h][2] += y; st[a][1] += y; st[a][2] += x
             if x > y:
                 st[h][0] += 2 if so else 3; st[a][0] += 1 if so else 0
             else:
                 st[a][0] += 2 if so else 3; st[h][0] += 1 if so else 0
-        others = sorted(((v[0], round(gq(v[1], v[2]) * 1000)) for k, v in st.items() if k != US), reverse=True)
-        out.append([p * 10000 + q for p, q in others])  # pack as pts*10000+gq
+        out.append(sorted((pack(*v) for k, v in st.items() if k != US), reverse=True))
     return out
 
 
@@ -318,6 +337,12 @@ def main():
         last_txt = "No games played yet"
     seed_txt = f"Seeded {rank}" if prelims_over else f"{rank}th of {len(table)} right now".replace("1th", "1st").replace("2th", "2nd").replace("3th", "3rd").replace("11st", "11th").replace("12nd", "12th").replace("13rd", "13th")
 
+    # can the Sabres still reach the quarterfinals? (teams already at or above our max points)
+    max_pts = us["pts"] + 3 * len(remaining)
+    locked_above = sum(1 for r in table if r["team"] != US and r["pts"] >= max_pts)
+    avoid_mode = bool(remaining) and locked_above >= TOP_N + 2
+    target = 16 if avoid_mode else TOP_N
+
     # remaining-game inputs for the calculator
     calc_rows, opp_json = [], []
     for i, g in enumerate(remaining, 1):
@@ -326,14 +351,24 @@ def main():
         abbr = "".join(w[0] for w in re.sub(r"\d+U|18U", "", opp).split()[:3]).upper() or "OPP"
         calc_rows.append(
             f'<div class="row"><label for="g{i}s">{"vs" if home else "at"} {esc(opp)}<span>{esc(day_short(g))} {esc(g["time"].lstrip("0"))} · {esc(short_loc(g["loc"]))}</span></label>'
-            f'<div class="score"><span class="side">SMD</span><input id="g{i}s" type="number" min="0" max="15" value="3" inputmode="numeric"><span class="dash">–</span>'
-            f'<input id="g{i}o" type="number" min="0" max="15" value="0" inputmode="numeric"><span class="side">{esc(abbr)}</span></div></div>'
+            f'<div class="score"><span class="side">SMD</span><input id="g{i}s" type="number" min="0" max="15" value="{1 if avoid_mode else 3}" inputmode="numeric"><span class="dash">–</span>'
+            f'<input id="g{i}o" type="number" min="0" max="15" value="{1 if avoid_mode else 0}" inputmode="numeric"><span class="side">{esc(abbr)}</span></div></div>'
         )
         opp_json.append(opp)
     proj = project(table, games) if remaining else []
 
     # callout copy by phase
-    if remaining:
+    if remaining and avoid_mode:
+        n = len(remaining)
+        zero = [r for r in table if r["team"] != US and r["pts"] == us["pts"]]
+        callout = (f'<p><strong>The quarterfinals are out of reach. The goal now is to stay out of the Sunday 17-vs-18 game.</strong> '
+                   f'Seeds 9 through 16 play a consolation game Saturday night and are done. Seeds 17 and 18 play Sunday at 11:10 AM. '
+                   f'The Sabres are {seed_txt.lower()} with {us["pts"]} point{"s" if us["pts"] != 1 else ""}, {len(zero)} other team{"s" if len(zero) != 1 else ""} on the same points, and {n} game{"s" if n > 1 else ""} left.</p><ul>'
+                   f'<li><strong>One point is the whole game.</strong> Prelim games have no overtime: a tie after three periods goes straight to a shootout, and the shootout loser still gets 1 point. One point puts the Sabres above every team still on {us["pts"]}.</li>'
+                   f'<li><strong>A shutout loss is fatal.</strong> With {us["gf"]} goals for, the Sabres\' goal quotient is {esc(fmt_gq(gq(us["gf"], us["ga"])))}. The next tiebreaker is fewest goals against, and at {us["ga"]} they have the most in the group.</li>'
+                   f'<li><strong>If it\'s a loss, score anyway.</strong> Every Sabres goal lifts the quotient above teams that get shut out today. Two or more goals in a close loss keeps a slim chance alive.</li>'
+                   f'<li><strong>Keep it tight.</strong> A 0–0 or 1–1 game into the shootout is worth far more than chasing goals and losing by three.</li></ul>')
+    elif remaining:
         n = len(remaining)
         need = TOP_N
         lead = (f"<strong>Win {'both remaining games' if n == 2 else 'tomorrow'} in regulation, and win by a margin.</strong> "
@@ -373,7 +408,9 @@ def main():
         "BRACKET": render_bracket(games),
         "STANDINGS": render_standings(table, games),
         "N_TEAMS": str(len(table)),
-        "SIM_JSON": json.dumps({"base_pts": us["pts"], "base_gf": us["gf"], "base_ga": us["ga"], "n": len(remaining), "opps": opp_json, "sims": proj}, separators=(",", ":")),
+        "GOAL_H2": "What it takes to avoid the Sunday game" if avoid_mode else "What it takes to make the quarterfinals",
+        "ODDS_LABEL": "Saturday-night odds" if avoid_mode else "Top-8 odds",
+        "SIM_JSON": json.dumps({"base_pts": us["pts"], "base_gf": us["gf"], "base_ga": us["ga"], "n": len(remaining), "opps": opp_json, "target": target, "sims": proj}, separators=(",", ":")),
     }
     out = tpl
     for k, v in subs.items():
