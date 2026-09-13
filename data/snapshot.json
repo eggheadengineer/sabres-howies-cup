@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-12T20:40:09.666636-04:00",
+ "updated": "2026-09-12T20:50:08.356091-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -658,9 +658,9 @@
    "away": "San Jose Jr. Sharks 18aa",
    "home_label": "CONS",
    "away_label": "CONS",
-   "hs": 0,
-   "as": 0,
-   "status": "in-progress",
+   "hs": 2,
+   "as": 5,
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Valley",
    "round": "consolation",
    "so": false
@@ -675,8 +675,8 @@
    "home_label": "CONS",
    "away_label": "CONS",
    "hs": 0,
-   "as": 0,
-   "status": "in-progress",
+   "as": 7,
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Zoo",
    "round": "consolation",
    "so": false
@@ -708,7 +708,7 @@
    "away_label": "#8",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "quarter-final",
    "so": false
@@ -724,7 +724,7 @@
    "away_label": "#7",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Valley",
    "round": "quarter-final",
    "so": false
@@ -740,7 +740,7 @@
    "away_label": "#6",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "Wings Event Center \u00b7 Zoo",
    "round": "quarter-final",
    "so": false
