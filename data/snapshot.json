@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-13T10:31:04.828041-04:00",
+ "updated": "2026-09-13T13:36:36.175957-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -770,9 +770,9 @@
    "away": "West Michigan Varsity 18U AA White",
    "home_label": "",
    "away_label": "",
-   "hs": 0,
+   "hs": 2,
    "as": 0,
-   "status": "in-progress",
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "semi-final",
    "so": false
@@ -786,9 +786,9 @@
    "away": "18U Naperville Sabres",
    "home_label": "",
    "away_label": "Game 32 Winner",
-   "hs": 0,
-   "as": 0,
-   "status": "in-progress",
+   "hs": 3,
+   "as": 5,
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Valley",
    "round": "semi-final",
    "so": false
@@ -803,8 +803,8 @@
    "home_label": "Seed #17",
    "away_label": "Seed #18",
    "hs": 0,
-   "as": 0,
-   "status": "scheduled",
+   "as": 1,
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "consolation",
    "so": false
@@ -814,10 +814,10 @@
    "time": "03:20 PM",
    "day": "Sunday, September 13th",
    "when": "2026-09-13T15:20:00-04:00",
-   "home": "Game 38 Winner *",
-   "away": "Game 37 Winner *",
-   "home_label": "",
-   "away_label": "",
+   "home": "18U Naperville Sabres",
+   "away": "Columbus Chill",
+   "home_label": "Game 38 Winner",
+   "away_label": "Game 37 Winner",
    "hs": 0,
    "as": 0,
    "status": "scheduled",
