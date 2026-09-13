@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-13T15:44:10.369269-04:00",
+ "updated": "2026-09-13T17:43:58.653507-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -818,9 +818,9 @@
    "away": "Columbus Chill",
    "home_label": "Game 38 Winner",
    "away_label": "Game 37 Winner",
-   "hs": 0,
+   "hs": 2,
    "as": 0,
-   "status": "in-progress",
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "final",
    "so": false
