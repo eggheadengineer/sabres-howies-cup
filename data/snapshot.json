@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-12T20:20:10.470992-04:00",
+ "updated": "2026-09-12T20:30:12.525969-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -692,7 +692,7 @@
    "away_label": "CONS",
    "hs": 0,
    "as": 0,
-   "status": "scheduled",
+   "status": "in-progress",
    "loc": "BCIC - Kzoo \u00b7 Blue",
    "round": "consolation",
    "so": false
