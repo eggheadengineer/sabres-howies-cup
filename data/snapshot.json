@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-12T20:50:08.356091-04:00",
+ "updated": "2026-09-12T21:00:10.708435-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -642,9 +642,9 @@
    "away": "Affton Americans CSDHL 18U Prospects",
    "home_label": "CONS",
    "away_label": "CONS",
-   "hs": 0,
-   "as": 0,
-   "status": "in-progress",
+   "hs": 4,
+   "as": 4,
+   "status": "final",
    "loc": "Wings Event Center \u00b7 Arena",
    "round": "consolation",
    "so": false
