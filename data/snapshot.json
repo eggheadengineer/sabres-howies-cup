@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-29T16:00:10.624456-04:00",
+ "updated": "2026-09-29T16:10:13.155688-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -79,7 +79,7 @@
    "ga": 4
   },
   {
-   "team": "18U Michigan steel grey",
+   "team": "Michigan steel grey",
    "gp": 3,
    "w": 2,
    "l": 1,
@@ -302,7 +302,7 @@
    "time": "01:55 PM",
    "day": "Friday, September 11th",
    "when": "2026-09-11T13:55:00-04:00",
-   "home": "18U Michigan steel grey",
+   "home": "Michigan steel grey",
    "away": "Affton Americans CSDHL 18U Prospects",
    "home_label": "",
    "away_label": "",
@@ -415,7 +415,7 @@
    "day": "Friday, September 11th",
    "when": "2026-09-11T20:20:00-04:00",
    "home": "Columbus Chill",
-   "away": "18U Michigan steel grey",
+   "away": "Michigan steel grey",
    "home_label": "",
    "away_label": "",
    "hs": 6,
@@ -494,7 +494,7 @@
    "time": "10:45 AM",
    "day": "Saturday, September 12th",
    "when": "2026-09-12T10:45:00-04:00",
-   "home": "18U Michigan steel grey",
+   "home": "Michigan steel grey",
    "away": "Southern Maryland Sabres",
    "home_label": "",
    "away_label": "",
@@ -703,7 +703,7 @@
    "day": "Saturday, September 12th",
    "when": "2026-09-12T20:10:00-04:00",
    "home": "MHA Red 18U",
-   "away": "18U Michigan steel grey",
+   "away": "Michigan steel grey",
    "home_label": "#1",
    "away_label": "#8",
    "hs": 8,
