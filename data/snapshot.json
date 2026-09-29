@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-29T16:10:13.155688-04:00",
+ "updated": "2026-09-29T16:20:11.913739-04:00",
  "table": [
   {
    "team": "MHA Red 18U",
@@ -167,7 +167,7 @@
    "ga": 16
   },
   {
-   "team": "Affton Americans CSDHL 18U Prospects",
+   "team": "Affton Americans Prospects",
    "gp": 3,
    "w": 0,
    "l": 3,
@@ -303,7 +303,7 @@
    "day": "Friday, September 11th",
    "when": "2026-09-11T13:55:00-04:00",
    "home": "Michigan steel grey",
-   "away": "Affton Americans CSDHL 18U Prospects",
+   "away": "Affton Americans Prospects",
    "home_label": "",
    "away_label": "",
    "hs": 1,
@@ -382,7 +382,7 @@
    "time": "07:25 PM",
    "day": "Friday, September 11th",
    "when": "2026-09-11T19:25:00-04:00",
-   "home": "Affton Americans CSDHL 18U Prospects",
+   "home": "Affton Americans Prospects",
    "away": "MHA NAVY 18U",
    "home_label": "",
    "away_label": "",
@@ -575,7 +575,7 @@
    "day": "Saturday, September 12th",
    "when": "2026-09-12T13:00:00-04:00",
    "home": "West Michigan Varsity 18U AA White",
-   "away": "Affton Americans CSDHL 18U Prospects",
+   "away": "Affton Americans Prospects",
    "home_label": "",
    "away_label": "",
    "hs": 2,
@@ -639,7 +639,7 @@
    "day": "Saturday, September 12th",
    "when": "2026-09-12T18:30:00-04:00",
    "home": "TC North Stars",
-   "away": "Affton Americans CSDHL 18U Prospects",
+   "away": "Affton Americans Prospects",
    "home_label": "CONS",
    "away_label": "CONS",
    "hs": 4,
